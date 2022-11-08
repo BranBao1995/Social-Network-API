@@ -1,5 +1,4 @@
 const User = require("../models/User");
-const Thought = require("../models/Thought");
 
 module.exports = {
   async getUsers(req, res) {
@@ -48,8 +47,42 @@ module.exports = {
   // delete a user
   async deleteUser(req, res) {
     try {
-      const dbUserData = await User.findByIdAndDelete(req.params.userID);
+      const dbUserData = await User.findByIdAndDelete(req.params.userId);
       res.status(200).json(dbUserData);
-    } catch (err) {}
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  // add a friend
+  async addFriend(req, res) {
+    try {
+      const dbUserData = await User.findByIdAndUpdate(
+        req.params.userId,
+        {
+          $push: { friends: req.params.friendId },
+        },
+        { new: true }
+      );
+      res.status(200).json(dbUserData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  // delete a friend
+  async deleteFriend(req, res) {
+    try {
+      const dbUserData = await User.findByIdAndUpdate(
+        req.params.userId,
+        {
+          $pull: { friends: req.params.friendId },
+        },
+        { new: true }
+      );
+      res.status(200).json(dbUserData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   },
 };

@@ -15,8 +15,8 @@ const userSchema = new mongoose.Schema(
         message: "Invalid Email Input.",
       },
     },
-    thoughts: [{ type: mongoose.Schema.ObjectId, ref: "thought" }],
-    friends: [{ type: mongoose.Schema.ObjectId, ref: "user" }],
+    thoughts: [{ type: mongoose.Types.ObjectId, ref: "thought" }],
+    friends: [{ type: mongoose.Types.ObjectId, ref: "user" }],
   },
   {
     toJSON: {
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-postSchema.virtual("friendCount").get(function () {
+userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
