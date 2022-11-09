@@ -20,11 +20,11 @@ const reactionSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: function () {
-      return `${Date(this.default).getMonth() + 1}/${Date(
-        this.default
-      ).getDate()}/${Date(this.default).getFullYear()}`;
-    },
+    // get: function () {
+    //   return `${Date(this.default).getMonth() + 1}/${Date(
+    //     this.default
+    //   ).getDate()}/${Date(this.default).getFullYear()}`;
+    // },
   },
 });
 
@@ -34,11 +34,11 @@ const thoughtSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: function () {
-        return `${Date(this.default).getMonth() + 1}/${Date(
-          this.default
-        ).getDate()}/${Date(this.default).getFullYear()}`;
-      },
+      // get: function () {
+      //   return `${Date(this.default).getMonth() + 1}/${Date(
+      //     this.default
+      //   ).getDate()}/${Date(this.default).getFullYear()}`;
+      // },
     },
     username: {
       type: String,
@@ -49,9 +49,7 @@ const thoughtSchema = new mongoose.Schema(
   {
     toJSON: {
       virtuals: true,
-    },
-    toObject: {
-      virtuals: true,
+      getters: true,
     },
     id: true,
   }

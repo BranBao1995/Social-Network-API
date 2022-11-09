@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Thought = require("../models/Thought");
 
 module.exports = {
   async getUsers(req, res) {
@@ -48,7 +49,11 @@ module.exports = {
   async deleteUser(req, res) {
     try {
       const dbUserData = await User.findByIdAndDelete(req.params.userId);
-      res.status(200).json(dbUserData);
+      // also delete all associated thoughts by this user.
+      const deletedThought = await Thought.deleteMany({
+        username: dbUserData.username,
+      });
+      res.status(200).json({ dbUserData, deletedThought });
     } catch (err) {
       res.status(500).json(err);
     }

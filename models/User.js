@@ -21,9 +21,7 @@ const userSchema = new mongoose.Schema(
   {
     toJSON: {
       virtuals: true,
-    },
-    toObject: {
-      virtuals: true,
+      getters: true,
     },
     id: true,
   }

@@ -91,7 +91,7 @@ module.exports = {
         {
           $push: { reactions: req.body },
         },
-        { new: true }
+        { runValidators: true, new: true }
       );
       res.status(200).json(dbThoughtData);
     } catch (err) {
@@ -102,16 +102,13 @@ module.exports = {
   // delete a reaction
   async deleteReaction(req, res) {
     try {
+      console.log(req.params.reactionId);
       const dbThoughtData = await Thought.findByIdAndUpdate(
-        req.params.thoughtId,
+        { _id: req.params.thoughtId },
         {
-          $pull: {
-            reactions: {
-              $elemMatch: { reactionId: { $match: req.body.reactionId } },
-            },
-          },
+          $pull: { reactions: { reactionId: req.params.reactionId } },
         },
-        { new: true }
+        { runValidators: true, new: true }
       );
       res.status(200).json(dbThoughtData);
     } catch (err) {
