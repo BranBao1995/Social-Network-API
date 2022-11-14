@@ -29,7 +29,7 @@ Bootcamp Module 18 Challenge - Making a social network API
 
 ## Usage
 
-- Link to the demo video [https://app.castify.com/watch/c4bf2e54-5929-45ce-a43e-d701ed476d15](https://app.castify.com/watch/c4bf2e54-5929-45ce-a43e-d701ed476d15)
+- Link to the demo video [https://app.castify.com/view/c4bf2e54-5929-45ce-a43e-d701ed476d15](https://app.castify.com/view/c4bf2e54-5929-45ce-a43e-d701ed476d15)
 
 - Link to the Github Repository [https://github.com/BranBao1995/Social-Network-API](https://github.com/BranBao1995/Social-Network-API)
 
